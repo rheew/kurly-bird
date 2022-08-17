@@ -1,8 +1,11 @@
-package com.example.kurlybird;
+package com.example.kurlybird.domain;
+
+import lombok.Getter;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 public class IssueCategory {
 
     @Id

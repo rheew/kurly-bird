@@ -1,4 +1,6 @@
-package com.example.kurlybird;
+package com.example.kurlybird.domain;
+
+import com.example.kurlybird.File;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

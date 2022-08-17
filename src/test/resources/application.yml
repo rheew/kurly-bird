@@ -2,6 +2,8 @@ naver:
   client:
     id: ENC(wOhXtQ44Th7cKrMjJ5G+/VUI9hZiYlusM2NpLRoZamc=)
     secret: ENC(EUCjgEdMNYGkQ2g1F3VjX512plz7ffuB)
+  openapi:
+    url: https://openapi.naver.com/v1/search/news.json
 
 jasypt:
   encryptor:

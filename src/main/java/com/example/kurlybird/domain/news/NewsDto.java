@@ -1,12 +1,20 @@
-package com.example.kurlybird;
+package com.example.kurlybird.domain.news;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
+@Getter
 public class NewsDto {
     @JsonProperty("lastBuildDate")
-    private String lastBuildDate;
+    @JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss Z", locale = "ENGLISH")
+    private LocalDateTime lastBuildDate;
     @JsonProperty("total")
     private String total;
     @JsonProperty("start")
@@ -16,7 +24,7 @@ public class NewsDto {
     @JsonProperty("items")
     private List<Item> items;
 
-    static class Item {
+    public static class Item {
         @JsonProperty("title")
         private String title;
 
@@ -30,6 +38,7 @@ public class NewsDto {
         private String description;
 
         @JsonProperty("pubDate")
-        private String pubDate;
+        @JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss Z", locale = "ENGLISH")
+        private LocalDateTime pubDate;
     }
 }

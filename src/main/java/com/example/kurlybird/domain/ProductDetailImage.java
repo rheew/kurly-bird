@@ -1,4 +1,7 @@
-package com.example.kurlybird;
+package com.example.kurlybird.domain;
+
+import com.example.kurlybird.File;
+import com.example.kurlybird.domain.ProductDetail;
 
 import javax.persistence.*;
 

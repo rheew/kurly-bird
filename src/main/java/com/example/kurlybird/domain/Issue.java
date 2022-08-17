@@ -1,9 +1,11 @@
-package com.example.kurlybird;
+package com.example.kurlybird.domain;
+
+import com.example.kurlybird.domain.news.News;
 
 import javax.persistence.*;
 
 @Entity
-public class Issue {
+public class Issue extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

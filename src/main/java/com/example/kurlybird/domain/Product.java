@@ -1,4 +1,4 @@
-package com.example.kurlybird;
+package com.example.kurlybird.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;

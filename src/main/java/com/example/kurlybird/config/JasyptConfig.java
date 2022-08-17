@@ -1,4 +1,4 @@
-package com.example.kurlybird;
+package com.example.kurlybird.config;
 
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;

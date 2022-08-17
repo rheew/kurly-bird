@@ -1,4 +1,4 @@
-package com.example.kurlybird;
+package com.example.kurlybird.domain.news;
 
 import javax.persistence.*;
 
