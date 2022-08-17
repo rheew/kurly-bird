@@ -27,6 +27,7 @@ dependencies {
     // Jasypt
     implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
     runtimeOnly 'com.h2database:h2'
+    implementation 'mysql:mysql-connector-java'
 
 }
 

@@ -3,15 +3,13 @@ package com.example.kurlybird.domain.news;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
-public class NewsDto {
+public class NaverNewsInfo {
     @JsonProperty("lastBuildDate")
     @JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss Z", locale = "ENGLISH")
     private LocalDateTime lastBuildDate;
@@ -24,6 +22,7 @@ public class NewsDto {
     @JsonProperty("items")
     private List<Item> items;
 
+    @Getter
     public static class Item {
         @JsonProperty("title")
         private String title;
@@ -41,4 +40,15 @@ public class NewsDto {
         @JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss Z", locale = "ENGLISH")
         private LocalDateTime pubDate;
     }
+
+    public List<Item> getKeywordItems(String keywordMatches) {
+        return items.stream()
+                .filter(item -> isMatchesItem(item, keywordMatches))
+                .collect(Collectors.toList());
+    }
+
+    public boolean isMatchesItem(Item item, String keywordMatches) {
+        return item.description.matches(keywordMatches) || item.title.matches(keywordMatches);
+    }
+
 }

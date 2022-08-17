@@ -15,7 +15,7 @@ public class JasyptTest {
 
     @Test
     public void jasypt_encrypt_decrypt_test() {
-        String testText = "94IxiSIz0A";
+        String testText = "bird";
 
         StandardPBEStringEncryptor jasypt = new StandardPBEStringEncryptor();
         jasypt.setPassword(encryptKey);

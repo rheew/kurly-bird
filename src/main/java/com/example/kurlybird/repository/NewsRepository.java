@@ -1,8 +1,11 @@
-package com.example.kurlybird.Repository;
+package com.example.kurlybird.repository;
 
 import com.example.kurlybird.domain.news.News;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 public interface NewsRepository extends JpaRepository<News, Long> {
+
+    Optional<News> findTopByOrderByPubDateDesc();
 }

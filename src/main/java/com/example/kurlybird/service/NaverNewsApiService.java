@@ -1,6 +1,6 @@
 package com.example.kurlybird.service;
 
-import com.example.kurlybird.domain.news.NewsDto;
+import com.example.kurlybird.domain.news.NaverNewsInfo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -25,10 +25,10 @@ public class NaverNewsApiService {
     @Value("${naver.openapi.url}")
     private String url;
 
-    public NewsDto getNewsInfo(String keyword) throws UnsupportedEncodingException {
+    public NaverNewsInfo getNewsInfo(String keyword) throws UnsupportedEncodingException {
         RestTemplate restTemplate = new RestTemplate();
         final String query = URLEncoder.encode(keyword, "UTF-8");
-        final String baseUrl = url + "query=" + query;
+        final String baseUrl = url + "?query=" + query + "&display=" + 100;
 
         URI uri = URI.create(baseUrl);
 
@@ -38,11 +38,11 @@ public class NaverNewsApiService {
 
         HttpEntity request = new HttpEntity(headers);
 
-        ResponseEntity<NewsDto> response = restTemplate.exchange(
+        ResponseEntity<NaverNewsInfo> response = restTemplate.exchange(
                 uri,
                 HttpMethod.GET,
                 request,
-                NewsDto.class
+                NaverNewsInfo.class
         );
 
         if (isSuccessStatus(response)) {
@@ -51,7 +51,7 @@ public class NaverNewsApiService {
         return response.getBody();
     }
 
-    private boolean isSuccessStatus(ResponseEntity<NewsDto> response) {
+    private boolean isSuccessStatus(ResponseEntity<NaverNewsInfo> response) {
         return response.getStatusCodeValue() != SUCCESS_STATUS;
     }
 }
