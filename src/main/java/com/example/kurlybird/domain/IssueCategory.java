@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class IssueCategory {
+public class IssueCategory extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +20,16 @@ public class IssueCategory {
     @Column(nullable = false)
     private String name;
 
-    public IssueCategory(String name) {
-        this.name = name;
-    }
+    @OneToMany(mappedBy = "issueCategory")
+    private List<Issue> issues = new ArrayList<>();
 
-    public static IssueCategory createIssueCategory(String name) {
-        return new IssueCategory(name);
+    @OneToMany(mappedBy = "issueCategory")
+    private List<Product> products = new ArrayList<>();
+
+    //이슈가 있는 카테고리만 가져오기
+    //이슈는 최근 한달내 생성된 이슈
+    public boolean hasLastMonthIssue() {
+        return issues.stream()
+                    .anyMatch(issue -> issue.isLastMonth());
     }
 }

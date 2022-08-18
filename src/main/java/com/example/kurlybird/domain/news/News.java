@@ -1,5 +1,7 @@
 package com.example.kurlybird.domain.news;
 
+import com.example.kurlybird.domain.BaseTimeEntity;
+import com.example.kurlybird.domain.Issue;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +28,9 @@ public class News {
 
     @Column(nullable = false)
     private String url;
+
+    @OneToOne
+    private Issue issue;
 
     @Column(nullable = false)
     private LocalDateTime pubDate;

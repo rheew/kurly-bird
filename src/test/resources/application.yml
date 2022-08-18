@@ -11,18 +11,24 @@ jasypt:
 
 spring:
   datasource:
-#    url: jdbc:h2:tcp://localhost/~/test
-#    username: sa
-#    password:
+    url: jdbc:h2:tcp://localhost/~/test
+    username: sa
+    password:
   driver-class-name: org.h2.Driver
 
   jpa:
+    # data.sql을 실행하기 전에 테이블을 생성한다.
+    defer-datasource-initialization: true
     hibernate:
-#      ddl-auto: create
+      ddl-auto: create
     properties:
       hibernate:
         #        show_sql: true
         format_sql: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:h2/data.sql
 
 logging.level:
   org.hibernate.SQL: debug

@@ -1,18 +1,18 @@
 package com.example.kurlybird.domain;
 
-import com.example.kurlybird.File;
+import com.example.kurlybird.FileInfo;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-public class ProductImage {
+public class ProductImage extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
-    private File file;
+    private FileInfo fileInfo;
 }
