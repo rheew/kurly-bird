@@ -1,6 +1,6 @@
 package com.example.kurlybird.repository;
 
-import com.example.kurlybird.domain.IssueCategory;
+import com.example.kurlybird.domain.category.IssueCategory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

@@ -1,6 +1,8 @@
-package com.example.kurlybird.service;
+package com.example.kurlybird.domain.kurlybird;
 
-import com.example.kurlybird.domain.IssueCategory;
+import com.example.kurlybird.domain.category.IssueCategory;
+import com.example.kurlybird.domain.issue.IssueNewsRes;
+import com.example.kurlybird.domain.product.ProductRes;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,9 +15,9 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class KurlyBirdRes {
 
-    public static final String SUBTITLE = "가격이 오를 것 같아요";
-    public static final String TITLE = "지금 사면 좋은";
-    public static final String EMPTY = " ";
+    private static final String SUBTITLE = "가격이 오를 것 같아요";
+    private static final String TITLE = "지금 사면 좋은";
+    private static final String EMPTY = " ";
 
     private List<IssueNewsRes> news;
     private List<ProductRes> products;

@@ -1,4 +1,4 @@
-package com.example.kurlybird;
+package com.example.kurlybird.service;
 
 import com.example.kurlybird.domain.news.NaverNewsInfo;
 import org.junit.jupiter.api.Test;

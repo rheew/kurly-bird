@@ -16,7 +16,7 @@ import java.net.URLEncoder;
 @Service
 public class NaverNewsApiService {
 
-    public static final int SUCCESS_STATUS = 200;
+    private static final int SUCCESS_STATUS = 200;
 
     @Value("${naver.client.secret}")
     private String clientSecret;

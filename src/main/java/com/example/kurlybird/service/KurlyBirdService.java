@@ -1,8 +1,10 @@
 package com.example.kurlybird.service;
 
-import com.example.kurlybird.domain.IssueCategory;
+import com.example.kurlybird.domain.category.IssueCategory;
+import com.example.kurlybird.domain.issue.IssueNewsRes;
+import com.example.kurlybird.domain.kurlybird.KurlyBirdRes;
+import com.example.kurlybird.domain.product.ProductRes;
 import com.example.kurlybird.repository.IssueCategoryRepository;
-import com.example.kurlybird.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,5 @@
-package com.example.kurlybird.service;
+package com.example.kurlybird.domain.issue;
 
-import com.example.kurlybird.domain.Issue;
 import com.example.kurlybird.domain.news.News;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

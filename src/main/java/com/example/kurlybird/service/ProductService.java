@@ -1,6 +1,7 @@
-package com.example.kurlybird.controller;
+package com.example.kurlybird.service;
 
-import com.example.kurlybird.domain.Product;
+import com.example.kurlybird.domain.product.Product;
+import com.example.kurlybird.domain.product.ProductDetailRes;
 import com.example.kurlybird.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

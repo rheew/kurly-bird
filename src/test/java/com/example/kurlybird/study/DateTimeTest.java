@@ -9,6 +9,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Locale;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class DateTimeTest {
     @Test
     void localdatetime으로_형식변환() {
@@ -20,5 +22,10 @@ public class DateTimeTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
 
         System.out.println(LocalDateTime.parse(date, formatter));
+    }
+
+    @Test
+    void 날짜_스트링변환() {
+        assertThat(LocalDate.of(2020,1,1).toString()).isEqualTo("2020-01-01");
     }
 }

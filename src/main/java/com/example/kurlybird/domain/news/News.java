@@ -1,21 +1,19 @@
 package com.example.kurlybird.domain.news;
 
-import com.example.kurlybird.domain.BaseTimeEntity;
-import com.example.kurlybird.domain.Issue;
+import com.example.kurlybird.domain.issue.Issue;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class News {
 
-    public static final int ONE_YEARS = 1;
+    private static final int ONE_YEARS = 1;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

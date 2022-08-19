@@ -1,8 +1,7 @@
 package com.example.kurlybird.controller;
 
-import com.example.kurlybird.service.KurlyBirdRes;
+import com.example.kurlybird.domain.kurlybird.KurlyBirdRes;
 import com.example.kurlybird.service.KurlyBirdService;
-import com.example.kurlybird.service.NewsService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;

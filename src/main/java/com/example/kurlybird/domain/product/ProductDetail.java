@@ -1,9 +1,8 @@
-package com.example.kurlybird.domain;
+package com.example.kurlybird.domain.product;
 
-import com.example.kurlybird.domain.Product;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.example.kurlybird.domain.BaseTimeEntity;
+import com.example.kurlybird.domain.product.Product;
 import lombok.Getter;
-import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 

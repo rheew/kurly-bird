@@ -1,15 +1,16 @@
-package com.example.kurlybird.domain;
+package com.example.kurlybird.domain.product;
 
+import com.example.kurlybird.domain.BaseTimeEntity;
+import com.example.kurlybird.domain.category.IssueCategory;
 import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @Entity
 @Getter
-public class Product extends BaseTimeEntity{
+public class Product extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

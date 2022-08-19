@@ -1,6 +1,7 @@
 package com.example.kurlybird.domain;
 
 import com.example.kurlybird.FileInfo;
+import com.example.kurlybird.domain.product.ProductDetail;
 
 import javax.persistence.*;
 

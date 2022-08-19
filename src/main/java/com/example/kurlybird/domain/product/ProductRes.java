@@ -1,6 +1,5 @@
-package com.example.kurlybird.service;
+package com.example.kurlybird.domain.product;
 
-import com.example.kurlybird.domain.Product;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

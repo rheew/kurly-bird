@@ -1,8 +1,8 @@
 package com.example.kurlybird.service;
 
-import com.example.kurlybird.domain.Issue;
+import com.example.kurlybird.domain.issue.Issue;
 import com.example.kurlybird.repository.IssueCategoryRepository;
-import com.example.kurlybird.domain.IssueCategory;
+import com.example.kurlybird.domain.category.IssueCategory;
 import com.example.kurlybird.domain.news.News;
 import com.example.kurlybird.domain.news.NaverNewsInfo;
 import com.example.kurlybird.repository.IssueRepository;

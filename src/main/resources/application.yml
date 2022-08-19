@@ -5,6 +5,13 @@ naver:
   openapi:
     url: https://openapi.naver.com/v1/search/news.json
 
+price:
+  client:
+    id: dgi3CAcoiO5gPd49y1/LYA==
+    secret: ENC(6LlAJB7vQpVRTo5DFZdoPkwGNB5/huG7sUk8FMGhce97xTzXRHxgF/6jJ+Hz1MDE)
+  openapi:
+    url: https://www.kamis.or.kr/service/price/xml.do
+
 jasypt:
   encryptor:
     password: "hwichan"

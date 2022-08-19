@@ -1,5 +1,8 @@
-package com.example.kurlybird.domain;
+package com.example.kurlybird.domain.category;
 
+import com.example.kurlybird.domain.BaseTimeEntity;
+import com.example.kurlybird.domain.issue.Issue;
+import com.example.kurlybird.domain.product.Product;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
