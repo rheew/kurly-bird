@@ -18,9 +18,6 @@ public class ProductDetail extends BaseTimeEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private String contents;
-
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 

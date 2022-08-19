@@ -18,6 +18,8 @@ public class Product extends BaseTimeEntity{
     @Column(nullable = false)
     private String name;
 
+    private String contents;
+
     @OneToMany(mappedBy = "product")
     private List<ProductDetail> productDetails = new ArrayList<>();
 
@@ -29,5 +31,12 @@ public class Product extends BaseTimeEntity{
                 .mapToInt(item -> item.getPrice())
                 .min()
                 .orElseThrow(() -> new IllegalStateException("등록된 상품이 없습니다."));
+    }
+
+    public int getTotalStockQuantity() {
+        return productDetails.stream()
+                .map(ProductDetail::getStockQuantity)
+                .mapToInt(i -> i)
+                .sum();
     }
 }

@@ -26,7 +26,7 @@ public class KurlyBirdService {
 
                             final List<ProductRes> productRes = ProductRes.from(category.getProducts());
 
-                            return KurlyBirdRes.of(issueNewsRes, productRes, category.getId()); })
+                            return KurlyBirdRes.ofIncreasePrice(issueNewsRes, productRes, category); })
                 .collect(Collectors.toList());
     }
 }
