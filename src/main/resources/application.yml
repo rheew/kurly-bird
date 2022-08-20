@@ -18,9 +18,12 @@ jasypt:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/bird
-    username: root
-    password: 0917
+#    url: jdbc:mysql://localhost:3306/bird
+#    username: root
+#    password: 0917
+    url: jdbc:mysql://database-kurlybird.cxxk6dez9w22.ap-northeast-2.rds.amazonaws.com:3306/kurly
+    username: admin
+    password: kurlybird0917
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
