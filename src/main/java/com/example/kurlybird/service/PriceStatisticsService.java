@@ -1,14 +1,19 @@
 package com.example.kurlybird.service;
 
+import com.example.kurlybird.domain.category.IssueCategory;
 import com.example.kurlybird.domain.statistics.CategoryPriceCode;
 import com.example.kurlybird.domain.statistics.PriceApiReq;
 import com.example.kurlybird.domain.statistics.PriceStatistics;
 import com.example.kurlybird.domain.statistics.PriceStatisticsInfo;
+import com.example.kurlybird.repository.CategoryPriceCodeRepository;
+import com.example.kurlybird.repository.IssueCategoryRepository;
 import com.example.kurlybird.repository.PriceStatisticsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,7 +21,16 @@ public class PriceStatisticsService {
     private final PriceStatisticsRepository repository;
     private final CategoryPriceCodeRepository categoryPriceCodeRepository;
     private final PriceStatisticsApiService service;
+    private final IssueCategoryRepository issueCategoryRepository;
 
+    @Transactional(readOnly = true)
+    public List<PriceStatisticsRes> getInfos(Long categoryId) {
+        final IssueCategory issueCategory = issueCategoryRepository.findById(categoryId).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 카테고리입니다."));
+
+        return PriceStatisticsRes.fromInfos(issueCategory.getPriceStatistics());
+    }
+
+    @Transactional
     public void saveStatistics() {
         final List<CategoryPriceCode> codes = categoryPriceCodeRepository.findAll();
         codes.stream()
@@ -27,6 +41,7 @@ public class PriceStatisticsService {
                 });
     }
 
+    @Transactional
     public void saveInitStatistics() {
         final List<CategoryPriceCode> codes = categoryPriceCodeRepository.findAll();
         codes.stream()

@@ -7,6 +7,7 @@ import com.example.kurlybird.domain.product.ProductRes;
 import com.example.kurlybird.repository.IssueCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class KurlyBirdService {
     private final IssueCategoryRepository issueCategoryRepository;
 
+    @Transactional(readOnly = true)
     public List<KurlyBirdRes> getList() {
         final List<IssueCategory> categories = issueCategoryRepository.findAll();
 

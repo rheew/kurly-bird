@@ -6,6 +6,7 @@ import com.example.kurlybird.domain.news.News;
 import com.example.kurlybird.domain.news.NaverNewsInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -20,6 +21,7 @@ public class NewsService {
     private final NewsRepository newsRepository;
     private final NaverNewsApiService naverNewsApiService;
 
+    @Transactional
     public List<News> saveAll(List<News> news) {
         return newsRepository.saveAll(news);
     }
@@ -33,8 +35,10 @@ public class NewsService {
         return null;
     }
 
+    @Transactional(readOnly = true)
     public List<News> findIssueNews(NaverNewsInfo dto) {
-        final Optional<News> latestSaveNews = newsRepository.findTopByOrderByPubDateDesc();
+        final News latestSaveNews = newsRepository.findTopByOrderByPubDateDesc()
+                .orElseGet(News::createLastYearNews);
 
         return dto.getKeywordItems(ISSUE_KEYWORD_MATCHES).stream()
                 .filter(item -> isAfter(latestSaveNews, item))
@@ -42,9 +46,7 @@ public class NewsService {
                 .collect(Collectors.toList());
     }
 
-    private boolean isAfter(Optional<News> latestSaveNews, NaverNewsInfo.Item item) {
-        final News news = latestSaveNews.orElseGet(News::createLastYearNews);
-
-        return news.getPubDate().isBefore(item.getPubDate());
+    private boolean isAfter(News latestSaveNews, NaverNewsInfo.Item item) {
+        return latestSaveNews.getPubDate().isBefore(item.getPubDate());
     }
 }

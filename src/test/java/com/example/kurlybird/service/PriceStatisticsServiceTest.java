@@ -46,6 +46,7 @@ public class PriceStatisticsServiceTest {
             response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
             return response;
         });
+
         HttpEntity<PriceStatisticsInfo> response = restTemplate.exchange(
                 builder.toUriString(),
                 HttpMethod.GET,

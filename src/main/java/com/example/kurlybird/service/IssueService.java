@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class IssueService {
     private final NewsService newsService;
     private final IssueRepository issueRepository;
 
+    @Transactional
     public void saveIssue() {
         final List<IssueCategory> categories = issueCategoryRepository.findAll();
 
