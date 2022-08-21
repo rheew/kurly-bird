@@ -1,6 +1,6 @@
 package com.example.kurlybird.service;
 
-import com.example.kurlybird.controller.NewsRes;
+import com.example.kurlybird.domain.news.NewsRes;
 import com.example.kurlybird.repository.NewsRepository;
 import com.example.kurlybird.domain.news.News;
 import com.example.kurlybird.domain.news.NaverNewsInfo;

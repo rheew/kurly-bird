@@ -1,5 +1,7 @@
 package com.example.kurlybird.controller;
 
+import com.example.kurlybird.domain.product.ProductDetailRes;
+import com.example.kurlybird.domain.statistics.PriceStatisticsRes;
 import com.example.kurlybird.service.PriceStatisticsService;
 import com.example.kurlybird.service.ProductService;
 import io.swagger.annotations.ApiOperation;
@@ -11,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,7 +28,7 @@ public class ProductController {
             @ApiResponse(code = 500, message = "서버 에러")
     })
     @GetMapping("/product/{productId}")
-    public ResponseEntity<?> getDetail(@PathVariable Long productId) {
+    public ResponseEntity<ProductDetailRes> getDetail(@PathVariable Long productId) {
         return new ResponseEntity<>(service.getDetail(productId), HttpStatus.OK);
     }
 
@@ -34,7 +38,7 @@ public class ProductController {
             @ApiResponse(code = 500, message = "서버 에러")
     })
     @GetMapping("/product/price-info/{categoryId}")
-    public ResponseEntity<?> getPriceInfo(@PathVariable Long categoryId) {
+    public ResponseEntity<List<PriceStatisticsRes>> getPriceInfo(@PathVariable Long categoryId) {
         return new ResponseEntity<>(priceStatisticsService.getInfos(categoryId), HttpStatus.OK);
     }
 }

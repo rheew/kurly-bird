@@ -1,11 +1,10 @@
 package com.example.kurlybird.controller;
 
-import com.example.kurlybird.domain.news.News;
+import com.example.kurlybird.domain.news.NewsRes;
 import com.example.kurlybird.service.NewsService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

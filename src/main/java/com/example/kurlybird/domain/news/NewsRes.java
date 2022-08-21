@@ -1,6 +1,5 @@
-package com.example.kurlybird.controller;
+package com.example.kurlybird.domain.news;
 
-import com.example.kurlybird.domain.news.News;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

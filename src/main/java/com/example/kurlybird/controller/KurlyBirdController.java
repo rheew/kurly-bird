@@ -25,7 +25,7 @@ public class KurlyBirdController {
             @ApiResponse(code = 500, message = "서버 에러")
     })
     @GetMapping("/kurly-bird")
-    public ResponseEntity<?> getKurlyBirdList() {
+    public ResponseEntity<List<KurlyBirdRes>> getKurlyBirdList() {
         final List<KurlyBirdRes> result = kurlyBirdService.getList();
 
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -37,7 +37,7 @@ public class KurlyBirdController {
             @ApiResponse(code = 500, message = "서버 에러")
     })
     @GetMapping("/kurly-bird/{categoryId}")
-    public ResponseEntity<?> getKurlyBirdDetail(@PathVariable Long categoryId) {
+    public ResponseEntity<KurlyBirdRes> getKurlyBirdDetail(@PathVariable Long categoryId) {
         final KurlyBirdRes result = kurlyBirdService.getKurlyBirdDetail(categoryId);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
