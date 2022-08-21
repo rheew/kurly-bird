@@ -18,12 +18,13 @@ public class ScheduleController {
     @PostMapping("/issue")
     @ApiIgnore
     public ResponseEntity<?> postIssue() {
-        issueService.saveIssue();
+        issueService.saveInitIssue();
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/price")
+    @ApiIgnore
     public ResponseEntity<?> postPrice() {
         priceStatisticsService.saveInitStatistics();
 

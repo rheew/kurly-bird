@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +31,31 @@ public class IssueService {
 
         categories.stream()
                 .forEach(category -> {
-                    final NaverNewsInfo naverNewsInfo = newsService.getNaverNewsInfo(category.getName());
+                    final NaverNewsInfo naverNewsInfo = newsService.getNaverNewsInfo(category.getName(), 1);
+                    final List<News> news = newsService.saveAll(newsService.findIssueNews(naverNewsInfo));
+
+                    if (news.size() > 0) {
+                        final List<Issue> issues = issueRepository.saveAll(Issue.createIssues(news, category));
+                        logger.debug("저장된 이슈 갯수: {}", issues.size());
+                    }
+                });
+    }
+
+    @Transactional
+    public void saveInitIssue() {
+        final List<IssueCategory> categories = issueCategoryRepository.findAll();
+
+        categories.stream()
+                .forEach(category -> {
+                    final NaverNewsInfo naverNewsInfo = new NaverNewsInfo();
+                    for(int i = 1; i <= 10; i++) {
+                        naverNewsInfo.addItems(newsService.getNaverNewsInfo(category.getName(), i));
+                        try {
+                            TimeUnit.SECONDS.sleep(1);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     final List<News> news = newsService.saveAll(newsService.findIssueNews(naverNewsInfo));
 
                     if (news.size() > 0) {

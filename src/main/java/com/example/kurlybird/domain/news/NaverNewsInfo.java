@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,7 @@ public class NaverNewsInfo {
     @JsonProperty("display")
     private String display;
     @JsonProperty("items")
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
 
     @Getter
     public static class Item {
@@ -39,6 +40,9 @@ public class NaverNewsInfo {
         @JsonProperty("pubDate")
         @JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss Z", locale = "ENGLISH")
         private LocalDateTime pubDate;
+    }
+    public void addItems(NaverNewsInfo info) {
+        items.addAll(info.getItems());
     }
 
     public List<Item> getKeywordItems(String keywordMatches) {

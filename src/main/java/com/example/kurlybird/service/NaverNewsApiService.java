@@ -25,10 +25,10 @@ public class NaverNewsApiService {
     @Value("${naver.openapi.url}")
     private String url;
 
-    public NaverNewsInfo getNewsInfo(String keyword) throws UnsupportedEncodingException {
+    public NaverNewsInfo getNewsInfo(String keyword, int page) throws UnsupportedEncodingException {
         RestTemplate restTemplate = new RestTemplate();
         final String query = URLEncoder.encode(keyword, "UTF-8");
-        final String baseUrl = url + "?query=" + query + "&display=" + 100;
+        final String baseUrl = url + "?query=" + query + "&display=" + 100 + "&page=" + page;
 
         URI uri = URI.create(baseUrl);
 

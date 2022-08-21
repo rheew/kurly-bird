@@ -16,7 +16,10 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class NewsService {
-    private static final String ISSUE_KEYWORD_MATCHES = "(.*)상승(.*)||(.*)생산량 뚝(.*)||(.*)인상(.*)||(.*)껑충(.*)";
+    private static final String ISSUE_KEYWORD_MATCHES = "(.*)상승(.*)||(.*)생산량 뚝(.*)||(.*)인상(.*)||(.*)껑충(.*)||" +
+            "(.*)치솟는(.*)||(.*)비싸(.*)||(.*)급등(.*)||(.*)가격 폭등(.*)||(.*)오른다(.*)||(.*)오를(.*)||(.*)올렸다(.*)||(.*)올랐(.*)||" +
+            "(.*)고공행진(.*)두배(.*)n배(.*)금값(.*)고물가(.*)金물가(.*)치솟아(.*)||" +
+            "(.*)폭등(.*)||(.*)자연재해(.*)||(.*)가뭄(.*)||(.*)홍수(.*)||(.*)흉작(.*)||(.*)식품(.*)||(.*)수입문제(.*)";
 
     private final NewsRepository newsRepository;
     private final NaverNewsApiService naverNewsApiService;
@@ -26,9 +29,9 @@ public class NewsService {
         return newsRepository.saveAll(news);
     }
 
-    public NaverNewsInfo getNaverNewsInfo(String name) {
+    public NaverNewsInfo getNaverNewsInfo(String name, int page) {
         try {
-            return naverNewsApiService.getNewsInfo(name);
+            return naverNewsApiService.getNewsInfo(name, page);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
