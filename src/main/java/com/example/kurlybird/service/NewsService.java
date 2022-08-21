@@ -1,16 +1,17 @@
 package com.example.kurlybird.service;
 
-import com.example.kurlybird.repository.IssueCategoryRepository;
+import com.example.kurlybird.controller.NewsRes;
 import com.example.kurlybird.repository.NewsRepository;
 import com.example.kurlybird.domain.news.News;
 import com.example.kurlybird.domain.news.NaverNewsInfo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,5 +52,10 @@ public class NewsService {
 
     private boolean isAfter(News latestSaveNews, NaverNewsInfo.Item item) {
         return latestSaveNews.getPubDate().isBefore(item.getPubDate());
+    }
+
+    public Page<NewsRes> getNewsList(Pageable pageable) {
+        return newsRepository.findAll(pageable)
+                .map(NewsRes::from);
     }
 }
