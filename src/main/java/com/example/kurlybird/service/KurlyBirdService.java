@@ -23,14 +23,7 @@ public class KurlyBirdService {
 
         return categories.stream()
                 .filter(category -> category.hasLastMonthIssue())
-                .map(category -> {
-                            final List<IssueNewsRes> issueNewsRes = category.getIssues().stream()
-                                    .map(IssueNewsRes::from)
-                                    .collect(Collectors.toList());
-
-                            final List<ProductRes> productRes = ProductRes.from(category.getProducts());
-
-                            return KurlyBirdRes.ofIncreasePrice(issueNewsRes, productRes, category); })
+                .map(KurlyBirdRes::ofIncreasePrice)
                 .collect(Collectors.toList());
     }
 }

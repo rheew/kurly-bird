@@ -3,12 +3,14 @@ package com.example.kurlybird.domain.kurlybird;
 import com.example.kurlybird.domain.category.IssueCategory;
 import com.example.kurlybird.domain.issue.IssueNewsRes;
 import com.example.kurlybird.domain.product.ProductRes;
+import com.example.kurlybird.domain.statistics.PriceStatisticsRes;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor
@@ -21,14 +23,20 @@ public class KurlyBirdRes {
 
     private List<IssueNewsRes> news;
     private List<ProductRes> products;
+    private List<PriceStatisticsRes> priceStatisticsRes;
     private Long issueCategoryId;
     private String title;
     private String subtitle;
 
-    public static KurlyBirdRes ofIncreasePrice(List<IssueNewsRes> issueNewsRes, List<ProductRes> productRes, IssueCategory issueCategory) {
+    public static KurlyBirdRes ofIncreasePrice(IssueCategory issueCategory) {
+        final List<IssueNewsRes> issueNewsRes = issueCategory.getIssues().stream()
+                .map(IssueNewsRes::from)
+                .collect(Collectors.toList());
+        final List<ProductRes> productRes = ProductRes.from(issueCategory.getProducts());
         final String subtitle = issueCategory.getName() + EMPTY + SUBTITLE;
         final String title = TITLE + EMPTY + issueCategory.getName();
+        final List<PriceStatisticsRes> priceStatisticsRes = PriceStatisticsRes.fromInfos(issueCategory.getPriceStatistics());
 
-        return new KurlyBirdRes(issueNewsRes, productRes, issueCategory.getId(), title, subtitle);
+        return new KurlyBirdRes(issueNewsRes, productRes, priceStatisticsRes, issueCategory.getId(), title, subtitle);
     }
 }
