@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,5 +26,11 @@ public class KurlyBirdService {
                 .filter(category -> category.hasLastMonthIssue())
                 .map(KurlyBirdRes::ofIncreasePrice)
                 .collect(Collectors.toList());
+    }
+
+    public KurlyBirdRes getKurlyBirdDetail(Long categoryId) {
+        return issueCategoryRepository.findById(categoryId)
+                .map(KurlyBirdRes::ofIncreasePrice)
+                .orElseThrow(() -> new IllegalStateException("존재하지 않는 카테고리입니다."));
     }
 }
