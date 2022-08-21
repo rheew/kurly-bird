@@ -28,6 +28,10 @@ public class PriceStatistics {
     @ManyToOne(fetch = FetchType.LAZY)
     private IssueCategory issueCategory;
 
+    public PriceStatistics(String price) {
+        this.price = price;
+    }
+
     public static List<PriceStatistics> ofInfos(PriceStatisticsInfo info, IssueCategory category) {
         //item 마다 한개씩 등록 할 예정  결과가 list 객체
         return info.getItems().stream()
@@ -43,5 +47,9 @@ public class PriceStatistics {
 
     public LocalDate getRegDate() {
         return id.getRegDate();
+    }
+
+    public int getPriceToInt() {
+        return Integer.parseInt(price.replaceAll(",", ""));
     }
 }

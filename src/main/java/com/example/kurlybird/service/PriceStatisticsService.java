@@ -1,10 +1,7 @@
 package com.example.kurlybird.service;
 
 import com.example.kurlybird.domain.category.IssueCategory;
-import com.example.kurlybird.domain.statistics.CategoryPriceCode;
-import com.example.kurlybird.domain.statistics.PriceApiReq;
-import com.example.kurlybird.domain.statistics.PriceStatistics;
-import com.example.kurlybird.domain.statistics.PriceStatisticsInfo;
+import com.example.kurlybird.domain.statistics.*;
 import com.example.kurlybird.repository.CategoryPriceCodeRepository;
 import com.example.kurlybird.repository.IssueCategoryRepository;
 import com.example.kurlybird.repository.PriceStatisticsRepository;

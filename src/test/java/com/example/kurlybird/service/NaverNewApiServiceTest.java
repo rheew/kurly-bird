@@ -27,8 +27,8 @@ public class NaverNewApiServiceTest {
     @Test
     void 뉴스_API_정상동작확인() throws UnsupportedEncodingException {
         RestTemplate restTemplate = new RestTemplate();
-        final String query = URLEncoder.encode("사과", "UTF-8");
-        String baseUrl = url + "?query=" + query + "&display=" + 100;
+        final String query = URLEncoder.encode("수박", "UTF-8");
+        String baseUrl = url + "?query=" + query + "&display=" + 10 + "&start=" + 1;
         URI uri = URI.create(baseUrl);
 
         HttpHeaders headers = new HttpHeaders();

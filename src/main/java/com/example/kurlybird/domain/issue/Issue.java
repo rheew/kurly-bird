@@ -21,7 +21,7 @@ public class Issue extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "issue", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private News news;
 
     @ManyToOne(fetch = FetchType.LAZY)

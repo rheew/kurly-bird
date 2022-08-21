@@ -1,6 +1,6 @@
-package com.example.kurlybird.service;
+package com.example.kurlybird.domain.statistics;
 
-import com.example.kurlybird.domain.statistics.PriceStatistics;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,13 +14,14 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class PriceStatisticsRes {
 
-    private String price;
+    private int price;
     private Long categoryId;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private LocalDate date;
 
     public static List<PriceStatisticsRes> fromInfos(List<PriceStatistics> statistics) {
         return statistics.stream()
-                .map(item -> new PriceStatisticsRes(item.getPrice(), item.getCategoryId(), item.getRegDate()))
+                .map(item -> new PriceStatisticsRes(item.getPriceToInt(), item.getCategoryId(), item.getRegDate()))
                 .collect(Collectors.toList());
     }
 }

@@ -29,7 +29,8 @@ public class News {
     @Column(nullable = false)
     private String url;
 
-    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL, mappedBy = "news")
+    @JoinColumn(name = "id")
     private Issue issue;
 
     @Column(nullable = false)
