@@ -15,16 +15,23 @@ public class SmsSendService {
 
     private static final Logger logger = LoggerFactory.getLogger(SmsSendService.class);
 
-    @Value("${sms-api.key}")
-    private String API_KEY;
-    @Value("${sms-api.secret}")
-    private String API_SECRET;
-    @Value("${sms-api.domain}")
-    private String SMS_SEND_DOMAIN;
-    @Value("${sms-api.sender}")
-    private String sender;
+    private static String API_KEY;
+    private static String API_SECRET;
+    private static String smsSendDomain;
+    private static String sender;
+    private static DefaultMessageService messageService;
 
-    private final DefaultMessageService messageService = NurigoApp.INSTANCE.initialize(API_KEY, API_SECRET, SMS_SEND_DOMAIN);;
+    public SmsSendService(@Value("${sms-api.key}") String API_KEY,
+                          @Value("${sms-api.secret}") String API_SECRET,
+                          @Value("${sms-api.domain}") String smsSendDomain,
+                          @Value("${sms-api.sender}") String sender) {
+        this.API_KEY = API_KEY;
+        this.API_SECRET = API_SECRET;
+        this.smsSendDomain = smsSendDomain;
+        this.sender = sender;
+        messageService = NurigoApp.INSTANCE.initialize(API_KEY, API_SECRET, smsSendDomain);
+    }
+
 
     public void sendOne(String receiver) {
         Message message = new Message();

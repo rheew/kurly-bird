@@ -32,15 +32,11 @@ public class IssueService {
         categories.stream()
                 .forEach(category -> {
                     final NaverNewsInfo naverNewsInfo = newsService.getNaverNewsInfo(category.getName(), 1);
-                    final List<News> news = newsService.saveAll(newsService.findIssueNews(naverNewsInfo, category.getId()));
-
-                    if (news.size() > 0) {
-                        final List<Issue> issues = issueRepository.saveAll(Issue.createIssues(news, category));
-                        logger.debug("저장된 이슈 갯수: {}", issues.size());
-                    }
+                    save(category, naverNewsInfo);
                 });
     }
 
+    //이슈 초기화 등록 메서드
     @Transactional
     public void saveInitIssue() {
         final List<IssueCategory> categories = issueCategoryRepository.findAll();
@@ -48,20 +44,33 @@ public class IssueService {
         categories.stream()
                 .forEach(category -> {
                     final NaverNewsInfo naverNewsInfo = new NaverNewsInfo();
-                    for(int i = 1; i <= 5; i++) {
-                        naverNewsInfo.addItems(newsService.getNaverNewsInfo(category.getName(), i));
-                        try {
-                            TimeUnit.SECONDS.sleep(1);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    final List<News> news = newsService.saveAll(newsService.findIssueNews(naverNewsInfo, category.getId()));
-
-                    if (news.size() > 0) {
-                        final List<Issue> issues = issueRepository.saveAll(Issue.createIssues(news, category));
-                        logger.debug("저장된 이슈 갯수: {}", issues.size());
-                    }
+                    addNaverNewsInfo(category, naverNewsInfo);
+                    save(category, naverNewsInfo);
                 });
+    }
+
+    private void save(IssueCategory category, NaverNewsInfo naverNewsInfo) {
+        final List<News> news = newsService.saveAll(newsService.findIssueNews(naverNewsInfo, category.getId()));
+
+        if (news.size() > 0) {
+            final List<Issue> issues = issueRepository.saveAll(Issue.createIssues(news, category));
+            logger.debug("저장된 이슈 갯수: {}", issues.size());
+        }
+    }
+
+    private void addNaverNewsInfo(IssueCategory category, NaverNewsInfo naverNewsInfo) {
+        for(int i = 1; i <= 5; i++) {
+            naverNewsInfo.addItems(newsService.getNaverNewsInfo(category.getName(), i));
+            delay();
+        }
+    }
+
+    private void delay() {
+        try {
+            // naver api 정책으로 1초에 10건 이상 호출 불가능
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

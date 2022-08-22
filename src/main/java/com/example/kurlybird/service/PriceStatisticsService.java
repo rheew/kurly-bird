@@ -31,20 +31,23 @@ public class PriceStatisticsService {
         final List<CategoryPriceCode> codes = categoryPriceCodeRepository.findAll();
         codes.stream()
                 .forEach(code -> {
-                    final PriceStatisticsInfo info = service.getPriceStatisticsInfo(PriceApiReq.createToDayReq(code.getCode()));
-                    final List<PriceStatistics> priceStatistics = PriceStatistics.ofInfos(info, code.getIssueCategory());
-                    repository.saveAll(priceStatistics);
+                    save(code, PriceApiReq.createToDayReq(code.getCode()));
                 });
     }
 
+    //통계 데이터 초기화 용 메서드
     @Transactional
     public void saveInitStatistics() {
         final List<CategoryPriceCode> codes = categoryPriceCodeRepository.findAll();
         codes.stream()
                 .forEach(code -> {
-                    final PriceStatisticsInfo info = service.getPriceStatisticsInfo(PriceApiReq.createInitReq(code.getCode()));
-                    final List<PriceStatistics> priceStatistics = PriceStatistics.ofInfos(info, code.getIssueCategory());
-                    repository.saveAll(priceStatistics);
+                    save(code, PriceApiReq.createInitReq(code.getCode()));
                 });
+    }
+
+    private void save(CategoryPriceCode code, PriceApiReq req) {
+        final PriceStatisticsInfo info = service.getPriceStatisticsInfo(req);
+        final List<PriceStatistics> priceStatistics = PriceStatistics.ofInfos(info, code.getIssueCategory());
+        repository.saveAll(priceStatistics);
     }
 }
