@@ -2,7 +2,7 @@ package com.example.kurlybird.service;
 
 import com.example.kurlybird.domain.statistics.PriceApiReq;
 import com.example.kurlybird.domain.statistics.PriceStatisticsInfo;
-import lombok.RequiredArgsConstructor;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
