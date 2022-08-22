@@ -13,4 +13,12 @@ public class StringTest {
 
         assertThat(contents.matches(keywordMatches)).isTrue();
     }
+
+    @Test
+    void 문자열_필터테스트() {
+        String str = "&quot;폭염·폭우에 金값 채소 직접 심어먹어요&quot;…&apos;홈파밍&apos; 인기 <b>시금치</b>가 아니라";
+
+        assertThat(str.replaceAll("&quot;|&apos;|<b>|</b>", "")).isEqualTo("폭염·폭우에 金값 채소 직접 심어먹어요…홈파밍 인기 시금치가 아니라");
+
+    }
 }

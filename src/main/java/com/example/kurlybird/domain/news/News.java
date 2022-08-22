@@ -54,4 +54,12 @@ public class News {
     public static News createLastYearNews() {
         return new News(LocalDateTime.now().minusYears(ONE_YEARS));
     }
+
+    public String getTitle() {
+        return title.replaceAll("&quot;|&apos;|<b>|</b>", "");
+    }
+
+    public String getDescription() {
+        return description.replaceAll("&quot;|&apos;|<b>|</b>", "");
+    }
 }
