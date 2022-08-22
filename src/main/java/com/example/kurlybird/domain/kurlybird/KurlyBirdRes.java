@@ -31,6 +31,7 @@ public class KurlyBirdRes {
     public static KurlyBirdRes ofIncreasePrice(IssueCategory issueCategory) {
         final List<IssueNewsRes> issueNewsRes = issueCategory.getIssues().stream()
                 .map(IssueNewsRes::from)
+                .limit(5L)
                 .collect(Collectors.toList());
         final List<ProductRes> productRes = ProductRes.from(issueCategory.getProducts());
         final String subtitle = issueCategory.getName() + EMPTY + SUBTITLE;

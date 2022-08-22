@@ -1,6 +1,8 @@
 package com.example.kurlybird.service;
 
+import com.example.kurlybird.domain.issue.Issue;
 import com.example.kurlybird.domain.news.NewsRes;
+import com.example.kurlybird.repository.IssueRepository;
 import com.example.kurlybird.repository.NewsRepository;
 import com.example.kurlybird.domain.news.News;
 import com.example.kurlybird.domain.news.NaverNewsInfo;
@@ -24,6 +26,7 @@ public class NewsService {
 
     private final NewsRepository newsRepository;
     private final NaverNewsApiService naverNewsApiService;
+    private final IssueRepository issueRepository;
 
     @Transactional
     public List<News> saveAll(List<News> news) {
@@ -40,18 +43,15 @@ public class NewsService {
     }
 
     @Transactional(readOnly = true)
-    public List<News> findIssueNews(NaverNewsInfo dto) {
-        final News latestSaveNews = newsRepository.findTopByOrderByPubDateDesc()
-                .orElseGet(News::createLastYearNews);
+    public List<News> findIssueNews(NaverNewsInfo dto, Long categoryId) {
+        final News latestSaveNews = issueRepository.findTopByIssueCategory_IdOrderByNewsDesc(categoryId)
+                .orElseGet(Issue::fromInitNews)
+                .getNews();
 
         return dto.getKeywordItems(ISSUE_KEYWORD_MATCHES).stream()
-                .filter(item -> isAfter(latestSaveNews, item))
+                .filter(item -> item.isAfter(latestSaveNews))
                 .map(item -> News.createNews(item.getTitle(), item.getDescription(), item.getOriginalLink(), item.getPubDate()))
                 .collect(Collectors.toList());
-    }
-
-    private boolean isAfter(News latestSaveNews, NaverNewsInfo.Item item) {
-        return latestSaveNews.getPubDate().isBefore(item.getPubDate());
     }
 
     public Page<NewsRes> getNewsList(Pageable pageable) {

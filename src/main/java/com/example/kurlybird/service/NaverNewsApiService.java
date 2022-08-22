@@ -27,7 +27,7 @@ public class NaverNewsApiService {
 
     public NaverNewsInfo getNewsInfo(String keyword, int page) throws UnsupportedEncodingException {
         RestTemplate restTemplate = new RestTemplate();
-        final String query = URLEncoder.encode(keyword, "UTF-8");
+        final String query = URLEncoder.encode(keyword + " " + "가격", "UTF-8");
         final String baseUrl = url + "?query=" + query + "&display=" + 100 + "&start=" + page;
 
         URI uri = URI.create(baseUrl);

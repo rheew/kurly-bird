@@ -40,6 +40,10 @@ public class NaverNewsInfo {
         @JsonProperty("pubDate")
         @JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss Z", locale = "ENGLISH")
         private LocalDateTime pubDate;
+
+        public boolean isAfter(News latestSaveNews) {
+            return latestSaveNews.getPubDate().isBefore(pubDate);
+        }
     }
     public void addItems(NaverNewsInfo info) {
         items.addAll(info.getItems());
@@ -54,5 +58,4 @@ public class NaverNewsInfo {
     public boolean isMatchesItem(Item item, String keywordMatches) {
         return item.description.matches(keywordMatches) || item.title.matches(keywordMatches);
     }
-
 }

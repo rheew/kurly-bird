@@ -32,10 +32,18 @@ public class Issue extends BaseTimeEntity {
         this.issueCategory = issueCategory;
     }
 
+    private Issue(News news) {
+        this.news = news;
+    }
+
     public static List<Issue> createIssues(List<News> news, IssueCategory category) {
         return news.stream()
                 .map(item -> new Issue(item, category))
                 .collect(Collectors.toList());
+    }
+
+    public static Issue fromInitNews() {
+        return new Issue(News.createLastYearNews());
     }
 
     public boolean isLastMonth() {

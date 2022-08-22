@@ -23,6 +23,6 @@ public class IssueNewsRes {
 
     public static IssueNewsRes from(Issue issue) {
         News news = issue.getNews();
-        return new IssueNewsRes(issue.getId(), news.getTitle(), news.getDescription(), news.getTitle(), news.getPubDate());
+        return new IssueNewsRes(issue.getId(), news.getTitle(), news.getDescription(), news.getUrl(), news.getPubDate());
     }
 }

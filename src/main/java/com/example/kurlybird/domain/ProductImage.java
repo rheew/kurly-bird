@@ -2,11 +2,9 @@ package com.example.kurlybird.domain;
 
 import com.example.kurlybird.FileInfo;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
+@Entity
 public class ProductImage extends BaseTimeEntity {
 
     @Id

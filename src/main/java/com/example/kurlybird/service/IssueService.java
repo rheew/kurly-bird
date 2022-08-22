@@ -32,7 +32,7 @@ public class IssueService {
         categories.stream()
                 .forEach(category -> {
                     final NaverNewsInfo naverNewsInfo = newsService.getNaverNewsInfo(category.getName(), 1);
-                    final List<News> news = newsService.saveAll(newsService.findIssueNews(naverNewsInfo));
+                    final List<News> news = newsService.saveAll(newsService.findIssueNews(naverNewsInfo, category.getId()));
 
                     if (news.size() > 0) {
                         final List<Issue> issues = issueRepository.saveAll(Issue.createIssues(news, category));
@@ -48,7 +48,7 @@ public class IssueService {
         categories.stream()
                 .forEach(category -> {
                     final NaverNewsInfo naverNewsInfo = new NaverNewsInfo();
-                    for(int i = 1; i <= 10; i++) {
+                    for(int i = 1; i <= 5; i++) {
                         naverNewsInfo.addItems(newsService.getNaverNewsInfo(category.getName(), i));
                         try {
                             TimeUnit.SECONDS.sleep(1);
@@ -56,7 +56,7 @@ public class IssueService {
                             e.printStackTrace();
                         }
                     }
-                    final List<News> news = newsService.saveAll(newsService.findIssueNews(naverNewsInfo));
+                    final List<News> news = newsService.saveAll(newsService.findIssueNews(naverNewsInfo, category.getId()));
 
                     if (news.size() > 0) {
                         final List<Issue> issues = issueRepository.saveAll(Issue.createIssues(news, category));

@@ -38,10 +38,10 @@ values (now(), now(), '포도 큰 것', 1, 1, 100),
        (now(), now(), '김치 큰 것', 6, 13, 900);
 
 insert into news(description, pub_date, title, url)
-values ('내용입니다.1', now(), '제목입니다.1', 'test'),
+values ('내용입니다.1', '2022-01-01', '제목입니다.1', 'test'),
        ('내용입니다.2', now(), '제목입니다.2', 'test'),
-       ('내용입니다.3', now(), '제목입니다.3', 'test'),
-       ('내용입니다.4', now(), '제목입니다.4', 'test');
+       ('내용입니다.3', '2022-01-02', '제목입니다.3', 'test'),
+       ('내용입니다.4', '2022-01-03', '제목입니다.4', 'test');
 
 insert into issue(created_date, modified_date, issue_category_id, news_id)
 values (now(), now(), 1, 1),
