@@ -36,7 +36,7 @@ public class KurlyBirdRes {
         final List<ProductRes> productRes = ProductRes.from(issueCategory.getProducts());
         final String subtitle = issueCategory.getName() + EMPTY + SUBTITLE;
         final String title = TITLE + EMPTY + issueCategory.getName();
-        final List<PriceStatisticsRes> priceStatisticsRes = PriceStatisticsRes.fromInfos(issueCategory.getPriceStatistics());
+        final List<PriceStatisticsRes> priceStatisticsRes = PriceStatisticsRes.fromTwoWeekInfos(issueCategory.getPriceStatistics());
 
         return new KurlyBirdRes(issueNewsRes, productRes, priceStatisticsRes, issueCategory.getId(), title, subtitle);
     }

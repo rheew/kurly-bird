@@ -1,18 +1,16 @@
-package com.example.kurlybird;
+package com.example.kurlybird.domain;
 
-import com.example.kurlybird.domain.BaseTimeEntity;
+import lombok.Getter;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 public class FileInfo extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
-    private String url;
 
     @Column(nullable = false)
     private String name;

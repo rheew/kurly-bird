@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,8 +20,10 @@ public class PriceStatisticsRes {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private LocalDate date;
 
-    public static List<PriceStatisticsRes> fromInfos(List<PriceStatistics> statistics) {
+    public static List<PriceStatisticsRes> fromTwoWeekInfos(List<PriceStatistics> statistics) {
+
         return statistics.stream()
+                .filter(item -> item.getRegDate().isAfter(LocalDate.now().minusWeeks(2).minusDays(1)))
                 .map(item -> new PriceStatisticsRes(item.getPriceToInt(), item.getCategoryId(), item.getRegDate()))
                 .collect(Collectors.toList());
     }

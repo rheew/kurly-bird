@@ -24,6 +24,7 @@ public class KurlyBirdController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
+
     @GetMapping("/kurly-bird")
     public ResponseEntity<List<KurlyBirdRes>> getKurlyBirdList() {
         final List<KurlyBirdRes> result = kurlyBirdService.getList();

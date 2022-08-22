@@ -15,10 +15,11 @@ public class ProductRes {
     private Long id;
     private String name;
     private int price;
+    private String fileName;
 
     public static List<ProductRes> from(List<Product> products) {
         return products.stream()
-                .map(product -> new ProductRes(product.getId(), product.getName(), product.getMinPrice()))
+                .map(product -> new ProductRes(product.getId(), product.getName(), product.getMinPrice(), product.getFileName()))
                 .collect(Collectors.toList());
     }
 }

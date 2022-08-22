@@ -1,6 +1,7 @@
 package com.example.kurlybird.domain.product;
 
 import com.example.kurlybird.domain.BaseTimeEntity;
+import com.example.kurlybird.domain.ProductImage;
 import com.example.kurlybird.domain.category.IssueCategory;
 import lombok.Getter;
 
@@ -27,6 +28,10 @@ public class Product extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private IssueCategory issueCategory;
 
+    @OneToOne(mappedBy = "product")
+    @JoinColumn(name = "id")
+    private ProductImage productImage;
+
     public int getMinPrice() {
         return productDetails.stream()
                 .mapToInt(item -> item.getPrice())
@@ -39,5 +44,9 @@ public class Product extends BaseTimeEntity {
                 .map(ProductDetail::getStockQuantity)
                 .mapToInt(i -> i)
                 .sum();
+    }
+
+    public String getFileName() {
+        return productImage.getFileInfo().getName();
     }
 }

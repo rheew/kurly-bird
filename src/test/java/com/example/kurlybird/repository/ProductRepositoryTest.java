@@ -18,6 +18,6 @@ public class ProductRepositoryTest {
     @Test
     void 상품조회() {
         final List<Product> products = repository.findAll();
-        assertThat(products.size()).isEqualTo(13);
+        assertThat(products.size()).isEqualTo(17);
     }
 }

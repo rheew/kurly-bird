@@ -23,7 +23,7 @@ public class PriceStatisticsService {
     public List<PriceStatisticsRes> getInfos(Long categoryId) {
         final IssueCategory issueCategory = issueCategoryRepository.findById(categoryId).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 카테고리입니다."));
 
-        return PriceStatisticsRes.fromInfos(issueCategory.getPriceStatistics());
+        return PriceStatisticsRes.fromTwoWeekInfos(issueCategory.getPriceStatistics());
     }
 
     @Transactional
