@@ -17,6 +17,9 @@ import java.util.stream.Collectors;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class PriceStatistics {
 
+    private static final String COMMA = ",";
+    private static final int TRANSFORM_100G = 40;
+
     @EmbeddedId
     private PriceStatisticsId id;
 
@@ -50,6 +53,18 @@ public class PriceStatistics {
     }
 
     public int getPriceToInt() {
-        return Integer.parseInt(price.replaceAll(",", ""));
+        return to100gPrice(parseInt(getPriceRemoveComma()));
+    }
+
+    private String getPriceRemoveComma() {
+        return price.replaceAll(COMMA, "");
+    }
+
+    private int parseInt(String price) {
+        return Integer.parseInt(price);
+    }
+
+    private int to100gPrice(int price) {
+        return price / TRANSFORM_100G;
     }
 }

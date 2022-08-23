@@ -46,6 +46,10 @@ public class Product extends BaseTimeEntity {
                 .sum();
     }
 
+    public Long getIssueCategoryId() {
+        return issueCategory.getId();
+    }
+
     public String getFileName() {
         return productImage.getFileInfo().getName();
     }

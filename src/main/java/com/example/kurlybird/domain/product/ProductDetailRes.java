@@ -13,6 +13,7 @@ import java.util.List;
 public class ProductDetailRes {
 
     private Long id;
+    private Long issueCategoryId;
     private String name;
     private String contents;
     private String fileName;
@@ -21,9 +22,10 @@ public class ProductDetailRes {
     private int totalStockQuantity;
 
     public static ProductDetailRes of(Product product) {
-        return new ProductDetailRes(product.getId(), product.getName(),
-                product.getContents(), product.getFileName(),
-                product.getMinPrice(), ProductDetailInfo.from(product.getProductDetails()),
-                product.getTotalStockQuantity());
+        return new ProductDetailRes(
+                product.getId(), product.getIssueCategoryId(),
+                product.getName(), product.getContents(),
+                product.getFileName(), product.getMinPrice(),
+                ProductDetailInfo.from(product.getProductDetails()), product.getTotalStockQuantity());
     }
 }
