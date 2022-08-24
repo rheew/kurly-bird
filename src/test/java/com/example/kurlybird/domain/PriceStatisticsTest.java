@@ -11,6 +11,6 @@ public class PriceStatisticsTest {
     void 가격정보_Int로_가져온다() {
         final PriceStatistics priceStatistics = new PriceStatistics("1,101,000");
 
-        assertThat(priceStatistics.getPriceToInt()).isEqualTo(1101000);
+        assertThat(priceStatistics.getPriceToInt()).isEqualTo(27525);
     }
 }

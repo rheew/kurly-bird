@@ -27,6 +27,7 @@ public class KurlyBirdRes {
     private Long issueCategoryId;
     private String title;
     private String subtitle;
+    private String categoryName;
 
     public static KurlyBirdRes ofIncreasePrice(IssueCategory issueCategory) {
         final List<IssueNewsRes> issueNewsRes = issueCategory.getIssues().stream()
@@ -38,6 +39,6 @@ public class KurlyBirdRes {
         final String title = TITLE + EMPTY + issueCategory.getName();
         final List<PriceStatisticsRes> priceStatisticsRes = PriceStatisticsRes.fromTwoWeekInfos(issueCategory.getPriceStatistics());
 
-        return new KurlyBirdRes(issueNewsRes, productRes, priceStatisticsRes, issueCategory.getId(), title, subtitle);
+        return new KurlyBirdRes(issueNewsRes, productRes, priceStatisticsRes, issueCategory.getId(), title, subtitle, issueCategory.getName());
     }
 }

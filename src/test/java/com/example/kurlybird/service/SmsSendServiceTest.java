@@ -14,7 +14,7 @@ public class SmsSendServiceTest {
     @Test
     void 발송테스트() {
 
-//        service.sendOne("01012341234");
+//        service.sendOne("01086893037");
 //        System.out.println(response);
     }
 }

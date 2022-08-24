@@ -38,7 +38,11 @@ public class SmsSendService {
         // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
         message.setFrom(sender);
         message.setTo(receiver);
-        message.setText("한글 45자, 영자 90자 이하 입력되면 자동으로 SMS타입의 메시지가 추가됩니다.");
+        message.setSubject("[컬리버드 소식]");
+        message.setText("[컬리버드 소식]\n" +
+                "안녕하세요, 컬리버드 알림 구독을 신청해주셔서 감사합니다.\n\n" +
+                "컬리버드가 예측하기 어려운 가격의 상승 변동을 쉽게 확인 할 수 있도록 중요한 소식만 쏙쏙 골라서 바로 알려드릴게요! \n\n" +
+                "지금 컬리버드와 함께 구매 시작하러가기 \n\n http://3.34.2.197:3000/");
 
         SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));
         logger.debug("SMS 전송 요청 응답 : {}", response);
