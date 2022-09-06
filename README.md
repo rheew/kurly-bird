@@ -4,6 +4,8 @@
 ### 테이블 및 로직 설명
 <img width="1209" alt="스크린샷 2022-09-06 오후 2 36 44" src="https://user-images.githubusercontent.com/47098896/188555139-e1b7c19d-2294-4f6d-861d-5e357f52724f.png">
 
+### API 목록
+<img width="996" alt="스크린샷 2022-09-06 오후 2 36 14" src="https://user-images.githubusercontent.com/47098896/188557870-50e8da0c-aa23-428a-bfc3-018b6e4cd4d2.png">
 
 ### 기능 구현 목록
 
