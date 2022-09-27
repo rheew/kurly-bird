@@ -26,6 +26,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'net.nurigo:sdk:4.2.3'
 
+    // kafka
+    implementation 'org.springframework.kafka:spring-kafka'
+
     // Jasypt
     implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
     runtimeOnly 'com.h2database:h2'
