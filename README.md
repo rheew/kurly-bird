@@ -43,6 +43,4 @@
 ### 성과
 - 해커톤 결선 진출
 
-![IMG_5040](https://user-images.githubusercontent.com/47098896/192691903-3ee5c20c-18f4-4e9f-9264-46b3ea21080a.png)
-
-
+<img width="300" alt="스크린샷 2022-09-28 오후 2 19 26" src="https://user-images.githubusercontent.com/47098896/192693835-680a3271-07a6-4163-957f-f228d4d1a68b.png">
