@@ -39,3 +39,10 @@
 
 - [x] 문자 알림 API 제공
     - 입력한 핸드폰 번호로 문자를 보낼수 있다.
+    
+### 성과
+- 해커톤 결선 진출
+
+![IMG_5040](https://user-images.githubusercontent.com/47098896/192691903-3ee5c20c-18f4-4e9f-9264-46b3ea21080a.png)
+
+
