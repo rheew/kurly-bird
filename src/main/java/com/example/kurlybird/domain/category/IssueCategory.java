@@ -5,7 +5,6 @@ import com.example.kurlybird.domain.issue.Issue;
 import com.example.kurlybird.domain.product.Product;
 import com.example.kurlybird.domain.statistics.PriceStatistics;
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class IssueCategory extends BaseTimeEntity {
 
@@ -38,5 +36,25 @@ public class IssueCategory extends BaseTimeEntity {
     public boolean hasLastMonthIssue() {
         return issues.stream()
                     .anyMatch(issue -> issue.isLastMonth());
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Issue> getIssues() {
+        return issues;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public List<PriceStatistics> getPriceStatistics() {
+        return priceStatistics;
     }
 }

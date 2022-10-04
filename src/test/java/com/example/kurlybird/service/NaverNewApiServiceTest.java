@@ -4,13 +4,18 @@ import com.example.kurlybird.domain.news.NaverNewsInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -45,5 +50,24 @@ public class NaverNewApiServiceTest {
         );
         System.out.println(response.getBody());
         assertThat(response.getStatusCodeValue()).isEqualTo(200);
+    }
+
+    @Test
+    void 비동기() throws InterruptedException {
+        int threadCount = 100;
+        ExecutorService executorService = Executors.newFixedThreadPool(32); //
+        CountDownLatch latch = new CountDownLatch(threadCount); // 메인쓰레드가 다른 스레드 작업이 끝날때 까지 기다려 주기 위해 사용했다.
+
+        for (int i = 0; i < threadCount; i++) {
+            executorService.submit(() -> {
+                try {
+                    System.out.print("실행");
+                } finally {
+                    latch.countDown();
+                }
+            });
+        }
+        System.out.println("#$#$@%!$#%!$#%#$%f비동기");
+        latch.await();
     }
 }
